@@ -1,5 +1,5 @@
 var users = require('./models/users.js');
-var announces = require('./models/announces.js');
+var ads = require('./models/ads.js');
 var friends = require('./models/friends.js');
 
 module.exports = function(app) {
@@ -22,12 +22,12 @@ module.exports = function(app) {
 	app.route('/login')
 		.post(users.login);
 
-	app.route('/announces')
-		.get(announces.list)
-		.post(announces.create);
+	app.route('/ads')
+		.get(ads.list)
+		.post(ads.create);
 
-	app.route('/announces/:id')
-		.get(announces.findOne)
-		.delete(announces.delete)
-		.put(announces.update);
+	app.route('/ads/:id')
+		.get(ads.findOne)
+		.delete(ads.delete)
+		.put(ads.update);
 };

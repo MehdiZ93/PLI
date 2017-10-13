@@ -1,5 +1,6 @@
 let db = require('../db')
 let sha1 = require('sha1')
+let moment = require('moment');
 
 module.exports = {
 	// return All users
@@ -20,7 +21,7 @@ module.exports = {
 	},
 	// create user
 	create: function(req, res) {
-		db.query('INSERT INTO user (lastname, firstname, email, password, tel, country, picture, birthday, description) VALUES(?,?,?,?,?,?,?,?,?)', [req.body.lastname, req.body.firstname, req.body.email, sha1(req.body.password), req.body.tel, req.body.country, req.body.picture, req.body.birthday, req.body.description], (err, user) => {
+		db.query('INSERT INTO user (lastname, firstname, email, password, tel, country, picture, birthday, description, create_date, update_date, active, desactive_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', [req.body.lastname, req.body.firstname, req.body.email, sha1(req.body.password), req.body.tel, req.body.country, req.body.picture, req.body.birthday, req.body.description, moment().format(), moment().format(), req.body.active, null], (err, user) => {
             if(err) return res.json(err);
 
             res.status(200).json(req.body);
@@ -57,6 +58,13 @@ module.exports = {
         if(req.body.description != null) {
             request += "description = '" + req.body.description + "', ";
         }
+        if(req.body.active != null) {
+            request += "active = '" + req.body.active + "', ";
+            if(req.body.active == 0) {
+                request += "desactive_date = '" + moment().format() + "', ";
+            }
+        }
+        request += "update_date = '" + moment().format() + "', ";
 
         request = request.substr(0,request.length - 2)
         request += " WHERE id = ?"
