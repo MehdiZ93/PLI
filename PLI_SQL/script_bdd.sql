@@ -1,4 +1,4 @@
-CREATE TABLE User(
+CREATE TABLE user(
         id             int (11) Auto_increment  NOT NULL ,
         lastname       Varchar (50) ,
         firstname      Varchar (50) ,
@@ -40,13 +40,13 @@ CREATE TABLE hobby(
         PRIMARY KEY (id )
 )ENGINE=InnoDB;
 
-CREATE TABLE Parler(
+CREATE TABLE parler(
         id_user     Int NOT NULL ,
         id_language Int NOT NULL ,
         PRIMARY KEY (id_user ,id_language )
 )ENGINE=InnoDB;
 
-CREATE TABLE Inscrire(
+CREATE TABLE inscrire(
         confirm Bool ,
         id_user Int NOT NULL ,
         id_ad   Int NOT NULL ,
@@ -89,10 +89,10 @@ CREATE TABLE message(
 )ENGINE=InnoDB;
 
 ALTER TABLE ad ADD CONSTRAINT FK_ad_id_User FOREIGN KEY (author) REFERENCES User(id);
-ALTER TABLE Parler ADD CONSTRAINT FK_Parler_id_user FOREIGN KEY (id_user) REFERENCES User(id);
-ALTER TABLE Parler ADD CONSTRAINT FK_Parler_id_language FOREIGN KEY (id_language) REFERENCES language(id);
-ALTER TABLE Inscrire ADD CONSTRAINT FK_Inscrire_id_user FOREIGN KEY (id_user) REFERENCES User(id);
-ALTER TABLE Inscrire ADD CONSTRAINT FK_Inscrire_id_ad FOREIGN KEY (id_ad) REFERENCES ad(id);
+ALTER TABLE parler ADD CONSTRAINT FK_Parler_id_user FOREIGN KEY (id_user) REFERENCES User(id);
+ALTER TABLE parler ADD CONSTRAINT FK_Parler_id_language FOREIGN KEY (id_language) REFERENCES language(id);
+ALTER TABLE inscrire ADD CONSTRAINT FK_Inscrire_id_user FOREIGN KEY (id_user) REFERENCES User(id);
+ALTER TABLE inscrire ADD CONSTRAINT FK_Inscrire_id_ad FOREIGN KEY (id_ad) REFERENCES ad(id);
 ALTER TABLE friend ADD CONSTRAINT FK_friend_id_friend FOREIGN KEY (id_friend) REFERENCES User(id);
 ALTER TABLE friend ADD CONSTRAINT FK_friend_id_user FOREIGN KEY (id_user) REFERENCES User(id);
 ALTER TABLE aimer ADD CONSTRAINT FK_aimer_id_user FOREIGN KEY (id_user) REFERENCES User(id);
