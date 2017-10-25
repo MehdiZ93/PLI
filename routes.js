@@ -2,7 +2,7 @@ var users = require('./models/users.js');
 var ads = require('./models/ads.js');
 var friends = require('./models/friends.js');
 var messages = require('./models/messages.js');
-var liker = require('./models/liker.js');
+var liker = require('./models/user_likes.js');
 
 module.exports = function(app) {
 	app.route('/users')
