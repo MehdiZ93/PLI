@@ -2,6 +2,7 @@ var users = require('./models/users.js');
 var ads = require('./models/ads.js');
 var friends = require('./models/friends.js');
 var messages = require('./models/messages.js');
+var liker = require('./models/liker.js');
 
 module.exports = function(app) {
 	app.route('/users')
@@ -37,7 +38,7 @@ module.exports = function(app) {
 		.post(messages.create);
 
 	app.route('/messages/:id_user/:id_dest')
-		.get(messages.listById);
+		.get(messages.listById)
 		.delete(messages.delete);
 
 	app.route('/likes')

@@ -11,10 +11,10 @@ module.exports = {
 	},
     // return all likes by ID
     listById: function(req, res) {
-        db.quey('SELECT * FROM liker WHERE id_dest = ?', [req.params.id_dest], (err, likes) => {
+        db.query('SELECT * FROM liker WHERE id_dest = ?', [req.params.id_dest], (err, likes) => {
             if(err) return res.json(err);
 
-            req.status(200).json(likes);
+            res.status(200).json(likes);
         });
     },
 	//add like to like list
